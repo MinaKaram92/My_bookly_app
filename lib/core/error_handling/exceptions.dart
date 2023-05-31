@@ -1,5 +1,5 @@
-class FetchDataException implements Exception {}
+class BadRequestException implements Exception {}
 
 class UnauthorisedException implements Exception {}
 
-class BadRequestException implements Exception {}
+class FetchDataException implements Exception {}

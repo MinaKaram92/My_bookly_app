@@ -36,7 +36,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.3
   font_awesome_flutter: null
-  get_it: 
+  get_it: null
   go_router: null
   google_fonts: null
   http: null

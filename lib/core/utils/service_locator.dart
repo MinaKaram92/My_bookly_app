@@ -5,5 +5,7 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 setupGetIt() {
-  getIt.registerSingleton<SearchRepoImpl>(SearchRepoImpl(ApiService()));
+  getIt.registerSingleton<ApiService>(ApiService());
+  getIt.registerSingleton<SearchRepoImpl>(
+      SearchRepoImpl(getIt.get<ApiService>()));
 }

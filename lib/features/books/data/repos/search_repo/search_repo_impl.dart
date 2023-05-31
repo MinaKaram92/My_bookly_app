@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bookly_app/core/error_handling/exceptions.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:bookly_app/features/books/data/models/book_model/book_model.dart';
 import 'package:bookly_app/core/error_handling/failures.dart';
@@ -34,20 +33,8 @@ class SearchRepoImpl implements SearchRepo {
         books.add(BookModel.fromJson(book));
       }
       return right(books);
-    } on SocketException {
-      return left(ServerFailure(
-          'No internet Connection, check your connection and try again'));
-    } on TimeoutException {
-      return left(ServerFailure('Request timeout, please try again later'));
-    } on BadRequestException {
-      return left(ServerFailure('Bad request'));
-    } on UnauthorisedException {
-      return left(ServerFailure('Unauthorised'));
-    } on FetchDataException {
-      return left(
-          ServerFailure('Oops there is an error, please try agian later'));
     } catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure.fromErrorType(e));
     }
   }
 }
